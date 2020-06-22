@@ -1,0 +1,201 @@
+#table.tableName= ${Token[TOKEN.57]}
+Resources:
+  devHelloQueue367F2DC96:
+    Type: AWS::SQS::Queue
+    Metadata:
+      aws:cdk:path: HelloCdk3Stack/dev-HelloQueue-3/Resource
+  devHelloFunction3ServiceRole751DB12A:
+    Type: AWS::IAM::Role
+    Properties:
+      AssumeRolePolicyDocument:
+        Statement:
+          - Action: sts:AssumeRole
+            Effect: Allow
+            Principal:
+              Service: lambda.amazonaws.com
+        Version: "2012-10-17"
+      ManagedPolicyArns:
+        - Fn::Join:
+            - ""
+            - - "arn:"
+              - Ref: AWS::Partition
+              - :iam::aws:policy/service-role/AWSLambdaBasicExecutionRole
+    Metadata:
+      aws:cdk:path: HelloCdk3Stack/dev-HelloFunction-3/ServiceRole/Resource
+  devHelloFunction3ServiceRoleDefaultPolicyB6367914:
+    Type: AWS::IAM::Policy
+    Properties:
+      PolicyDocument:
+        Statement:
+          - Action:
+              - sqs:ReceiveMessage
+              - sqs:ChangeMessageVisibility
+              - sqs:GetQueueUrl
+              - sqs:DeleteMessage
+              - sqs:GetQueueAttributes
+            Effect: Allow
+            Resource:
+              Fn::GetAtt:
+                - devHelloQueue367F2DC96
+                - Arn
+          - Action:
+              - dynamodb:BatchWriteItem
+              - dynamodb:PutItem
+              - dynamodb:UpdateItem
+              - dynamodb:DeleteItem
+            Effect: Allow
+            Resource:
+              - Fn::GetAtt:
+                  - devQueueRecorderTable34AAA0AE9
+                  - Arn
+              - Ref: AWS::NoValue
+        Version: "2012-10-17"
+      PolicyName: devHelloFunction3ServiceRoleDefaultPolicyB6367914
+      Roles:
+        - Ref: devHelloFunction3ServiceRole751DB12A
+    Metadata:
+      aws:cdk:path: HelloCdk3Stack/dev-HelloFunction-3/ServiceRole/DefaultPolicy/Resource
+  devHelloFunction3E8A6C36E:
+    Type: AWS::Lambda::Function
+    Properties:
+      Code:
+        S3Bucket:
+          Ref: AssetParameters55df323db3c12ac17fd3648a3851cbb23d5eef5d1e2995e2f0c9d31b1fc699a6S3BucketB9C3C37A
+        S3Key:
+          Fn::Join:
+            - ""
+            - - Fn::Select:
+                  - 0
+                  - Fn::Split:
+                      - "||"
+                      - Ref: AssetParameters55df323db3c12ac17fd3648a3851cbb23d5eef5d1e2995e2f0c9d31b1fc699a6S3VersionKey7CE79C00
+              - Fn::Select:
+                  - 1
+                  - Fn::Split:
+                      - "||"
+                      - Ref: AssetParameters55df323db3c12ac17fd3648a3851cbb23d5eef5d1e2995e2f0c9d31b1fc699a6S3VersionKey7CE79C00
+      Handler: index.handler
+      Role:
+        Fn::GetAtt:
+          - devHelloFunction3ServiceRole751DB12A
+          - Arn
+      Runtime: nodejs12.x
+      Environment:
+        Variables:
+          TableName:
+            Ref: devQueueRecorderTable34AAA0AE9
+    DependsOn:
+      - devHelloFunction3ServiceRoleDefaultPolicyB6367914
+      - devHelloFunction3ServiceRole751DB12A
+    Metadata:
+      aws:cdk:path: HelloCdk3Stack/dev-HelloFunction-3/Resource
+      aws:asset:path: asset.55df323db3c12ac17fd3648a3851cbb23d5eef5d1e2995e2f0c9d31b1fc699a6
+      aws:asset:property: Code
+  devHelloFunction3SqsEventSourceHelloCdk3StackdevHelloQueue3126FEF271A78CA51:
+    Type: AWS::Lambda::EventSourceMapping
+    Properties:
+      EventSourceArn:
+        Fn::GetAtt:
+          - devHelloQueue367F2DC96
+          - Arn
+      FunctionName:
+        Ref: devHelloFunction3E8A6C36E
+    Metadata:
+      aws:cdk:path: HelloCdk3Stack/dev-HelloFunction-3/SqsEventSource:HelloCdk3StackdevHelloQueue3126FEF27/Resource
+  devQueueRecorderTable34AAA0AE9:
+    Type: AWS::DynamoDB::Table
+    Properties:
+      KeySchema:
+        - AttributeName: id
+          KeyType: HASH
+      AttributeDefinitions:
+        - AttributeName: id
+          AttributeType: S
+      ProvisionedThroughput:
+        ReadCapacityUnits: 5
+        WriteCapacityUnits: 5
+    UpdateReplacePolicy: Retain
+    DeletionPolicy: Retain
+    Metadata:
+      aws:cdk:path: HelloCdk3Stack/dev-QueueRecorderTable-3/Resource
+  CDKMetadata:
+    Type: AWS::CDK::Metadata
+    Properties:
+      Modules: aws-cdk=1.42.0,@aws-cdk/assets=1.42.0,@aws-cdk/aws-apigateway=1.42.0,@aws-cdk/aws-applicationautoscaling=1.42.0,@aws-cdk/aws-autoscaling-common=1.42.0,@aws-cdk/aws-cloudwatch=1.42.0,@aws-cdk/aws-dynamodb=1.42.0,@aws-cdk/aws-ec2=1.42.0,@aws-cdk/aws-events=1.42.0,@aws-cdk/aws-iam=1.42.0,@aws-cdk/aws-kms=1.42.0,@aws-cdk/aws-lambda=1.42.0,@aws-cdk/aws-lambda-event-sources=1.42.0,@aws-cdk/aws-logs=1.42.0,@aws-cdk/aws-s3=1.42.0,@aws-cdk/aws-s3-assets=1.42.0,@aws-cdk/aws-s3-notifications=1.42.0,@aws-cdk/aws-sns=1.42.0,@aws-cdk/aws-sns-subscriptions=1.42.0,@aws-cdk/aws-sqs=1.42.0,@aws-cdk/aws-ssm=1.42.0,@aws-cdk/cdk-assets-schema=1.42.0,@aws-cdk/cloud-assembly-schema=1.42.0,@aws-cdk/core=1.42.0,@aws-cdk/custom-resources=1.42.0,@aws-cdk/cx-api=1.42.0,@aws-cdk/region-info=1.42.0,jsii-runtime=node.js/v10.16.3
+    Condition: CDKMetadataAvailable
+Parameters:
+  AssetParameters55df323db3c12ac17fd3648a3851cbb23d5eef5d1e2995e2f0c9d31b1fc699a6S3BucketB9C3C37A:
+    Type: String
+    Description: S3 bucket for asset "55df323db3c12ac17fd3648a3851cbb23d5eef5d1e2995e2f0c9d31b1fc699a6"
+  AssetParameters55df323db3c12ac17fd3648a3851cbb23d5eef5d1e2995e2f0c9d31b1fc699a6S3VersionKey7CE79C00:
+    Type: String
+    Description: S3 key for asset version "55df323db3c12ac17fd3648a3851cbb23d5eef5d1e2995e2f0c9d31b1fc699a6"
+  AssetParameters55df323db3c12ac17fd3648a3851cbb23d5eef5d1e2995e2f0c9d31b1fc699a6ArtifactHashF71CE692:
+    Type: String
+    Description: Artifact hash for asset "55df323db3c12ac17fd3648a3851cbb23d5eef5d1e2995e2f0c9d31b1fc699a6"
+Conditions:
+  CDKMetadataAvailable:
+    Fn::Or:
+      - Fn::Or:
+          - Fn::Equals:
+              - Ref: AWS::Region
+              - ap-east-1
+          - Fn::Equals:
+              - Ref: AWS::Region
+              - ap-northeast-1
+          - Fn::Equals:
+              - Ref: AWS::Region
+              - ap-northeast-2
+          - Fn::Equals:
+              - Ref: AWS::Region
+              - ap-south-1
+          - Fn::Equals:
+              - Ref: AWS::Region
+              - ap-southeast-1
+          - Fn::Equals:
+              - Ref: AWS::Region
+              - ap-southeast-2
+          - Fn::Equals:
+              - Ref: AWS::Region
+              - ca-central-1
+          - Fn::Equals:
+              - Ref: AWS::Region
+              - cn-north-1
+          - Fn::Equals:
+              - Ref: AWS::Region
+              - cn-northwest-1
+          - Fn::Equals:
+              - Ref: AWS::Region
+              - eu-central-1
+      - Fn::Or:
+          - Fn::Equals:
+              - Ref: AWS::Region
+              - eu-north-1
+          - Fn::Equals:
+              - Ref: AWS::Region
+              - eu-west-1
+          - Fn::Equals:
+              - Ref: AWS::Region
+              - eu-west-2
+          - Fn::Equals:
+              - Ref: AWS::Region
+              - eu-west-3
+          - Fn::Equals:
+              - Ref: AWS::Region
+              - me-south-1
+          - Fn::Equals:
+              - Ref: AWS::Region
+              - sa-east-1
+          - Fn::Equals:
+              - Ref: AWS::Region
+              - us-east-1
+          - Fn::Equals:
+              - Ref: AWS::Region
+              - us-east-2
+          - Fn::Equals:
+              - Ref: AWS::Region
+              - us-west-1
+          - Fn::Equals:
+              - Ref: AWS::Region
+              - us-west-2
+

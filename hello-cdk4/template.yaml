@@ -1,0 +1,439 @@
+table.tableName= ${Token[TOKEN.29]}
+queue.queueName= ${Token[TOKEN.21]}
+{
+  "Resources": {
+    "coreStackNestedStackcoreStackNestedStackResource9FDC6F30": {
+      "Type": "AWS::CloudFormation::Stack",
+      "Properties": {
+        "TemplateURL": {
+          "Fn::Join": [
+            "",
+            [
+              "https://s3.",
+              {
+                "Ref": "AWS::Region"
+              },
+              ".",
+              {
+                "Ref": "AWS::URLSuffix"
+              },
+              "/",
+              {
+                "Ref": "AssetParametersc72dcc3f4317a21fe33bda4fbe7e45a03ab29413dc7ddfde4aab790e9c94a524S3Bucket73159D8D"
+              },
+              "/",
+              {
+                "Fn::Select": [
+                  0,
+                  {
+                    "Fn::Split": [
+                      "||",
+                      {
+                        "Ref": "AssetParametersc72dcc3f4317a21fe33bda4fbe7e45a03ab29413dc7ddfde4aab790e9c94a524S3VersionKey5DF6FEA2"
+                      }
+                    ]
+                  }
+                ]
+              },
+              {
+                "Fn::Select": [
+                  1,
+                  {
+                    "Fn::Split": [
+                      "||",
+                      {
+                        "Ref": "AssetParametersc72dcc3f4317a21fe33bda4fbe7e45a03ab29413dc7ddfde4aab790e9c94a524S3VersionKey5DF6FEA2"
+                      }
+                    ]
+                  }
+                ]
+              }
+            ]
+          ]
+        }
+      },
+      "Metadata": {
+        "aws:cdk:path": "HelloCdk4Stack/coreStack.NestedStack/coreStack.NestedStackResource"
+      }
+    },
+    "LambdaOnlyNestedStackLambdaOnlyNestedStackResource3CA97D7A": {
+      "Type": "AWS::CloudFormation::Stack",
+      "Properties": {
+        "TemplateURL": {
+          "Fn::Join": [
+            "",
+            [
+              "https://s3.",
+              {
+                "Ref": "AWS::Region"
+              },
+              ".",
+              {
+                "Ref": "AWS::URLSuffix"
+              },
+              "/",
+              {
+                "Ref": "AssetParametersf99ca992e8e95ac6baa52ff1d66376dd165d141c26cb0095fe608d3bf05af03eS3BucketFA6AB652"
+              },
+              "/",
+              {
+                "Fn::Select": [
+                  0,
+                  {
+                    "Fn::Split": [
+                      "||",
+                      {
+                        "Ref": "AssetParametersf99ca992e8e95ac6baa52ff1d66376dd165d141c26cb0095fe608d3bf05af03eS3VersionKeyE0147B15"
+                      }
+                    ]
+                  }
+                ]
+              },
+              {
+                "Fn::Select": [
+                  1,
+                  {
+                    "Fn::Split": [
+                      "||",
+                      {
+                        "Ref": "AssetParametersf99ca992e8e95ac6baa52ff1d66376dd165d141c26cb0095fe608d3bf05af03eS3VersionKeyE0147B15"
+                      }
+                    ]
+                  }
+                ]
+              }
+            ]
+          ]
+        },
+        "Parameters": {
+          "referencetoHelloCdk4StackcoreStackNestedStackcoreStackNestedStackResource7AF905CCOutputsHelloCdk4StackcoreStackdevHelloQueue1767ECA1Arn": {
+            "Fn::GetAtt": [
+              "coreStackNestedStackcoreStackNestedStackResource9FDC6F30",
+              "Outputs.HelloCdk4StackcoreStackdevHelloQueue1767ECA1Arn"
+            ]
+          },
+          "referencetoHelloCdk4StackcoreStackNestedStackcoreStackNestedStackResource7AF905CCOutputsHelloCdk4StackcoreStackdevQueueRecorderTable43EB2FBC6Arn": {
+            "Fn::GetAtt": [
+              "coreStackNestedStackcoreStackNestedStackResource9FDC6F30",
+              "Outputs.HelloCdk4StackcoreStackdevQueueRecorderTable43EB2FBC6Arn"
+            ]
+          },
+          "referencetoHelloCdk4StackAssetParameters1bc2a4ba6a234373c741b322137374177a44676f4cc3b2e99bc38ec01b641b87S3Bucket5305CB0CRef": {
+            "Ref": "AssetParameters1bc2a4ba6a234373c741b322137374177a44676f4cc3b2e99bc38ec01b641b87S3Bucket733A42FA"
+          },
+          "referencetoHelloCdk4StackAssetParameters1bc2a4ba6a234373c741b322137374177a44676f4cc3b2e99bc38ec01b641b87S3VersionKey648FF55ARef": {
+            "Ref": "AssetParameters1bc2a4ba6a234373c741b322137374177a44676f4cc3b2e99bc38ec01b641b87S3VersionKey861FB676"
+          },
+          "referencetoHelloCdk4StackcoreStackNestedStackcoreStackNestedStackResource7AF905CCOutputsHelloCdk4StackcoreStackdevQueueRecorderTable43EB2FBC6Ref": {
+            "Fn::GetAtt": [
+              "coreStackNestedStackcoreStackNestedStackResource9FDC6F30",
+              "Outputs.HelloCdk4StackcoreStackdevQueueRecorderTable43EB2FBC6Ref"
+            ]
+          },
+          "referencetoHelloCdk4StackcoreStackNestedStackcoreStackNestedStackResource7AF905CCOutputsHelloCdk4StackcoreStackdevHelloQueue1767ECA1Ref": {
+            "Fn::GetAtt": [
+              "coreStackNestedStackcoreStackNestedStackResource9FDC6F30",
+              "Outputs.HelloCdk4StackcoreStackdevHelloQueue1767ECA1Ref"
+            ]
+          }
+        }
+      },
+      "Metadata": {
+        "aws:cdk:path": "HelloCdk4Stack/LambdaOnly.NestedStack/LambdaOnly.NestedStackResource"
+      }
+    },
+    "ApiGatewayNestedStackApiGatewayNestedStackResource85A55C6F": {
+      "Type": "AWS::CloudFormation::Stack",
+      "Properties": {
+        "TemplateURL": {
+          "Fn::Join": [
+            "",
+            [
+              "https://s3.",
+              {
+                "Ref": "AWS::Region"
+              },
+              ".",
+              {
+                "Ref": "AWS::URLSuffix"
+              },
+              "/",
+              {
+                "Ref": "AssetParameterscaf62b443167a07d28768bc3dfbd005d635bfaf68ef778797b5296d08956c404S3Bucket5F4A8BD5"
+              },
+              "/",
+              {
+                "Fn::Select": [
+                  0,
+                  {
+                    "Fn::Split": [
+                      "||",
+                      {
+                        "Ref": "AssetParameterscaf62b443167a07d28768bc3dfbd005d635bfaf68ef778797b5296d08956c404S3VersionKey326AE732"
+                      }
+                    ]
+                  }
+                ]
+              },
+              {
+                "Fn::Select": [
+                  1,
+                  {
+                    "Fn::Split": [
+                      "||",
+                      {
+                        "Ref": "AssetParameterscaf62b443167a07d28768bc3dfbd005d635bfaf68ef778797b5296d08956c404S3VersionKey326AE732"
+                      }
+                    ]
+                  }
+                ]
+              }
+            ]
+          ]
+        },
+        "Parameters": {
+          "referencetoHelloCdk4StackLambdaOnlyNestedStackLambdaOnlyNestedStackResource493DC0B2OutputsHelloCdk4StackLambdaOnlypublishFunctionCC173C24Arn": {
+            "Fn::GetAtt": [
+              "LambdaOnlyNestedStackLambdaOnlyNestedStackResource3CA97D7A",
+              "Outputs.HelloCdk4StackLambdaOnlypublishFunctionCC173C24Arn"
+            ]
+          }
+        }
+      },
+      "Metadata": {
+        "aws:cdk:path": "HelloCdk4Stack/ApiGateway.NestedStack/ApiGateway.NestedStackResource"
+      }
+    },
+    "CDKMetadata": {
+      "Type": "AWS::CDK::Metadata",
+      "Properties": {
+        "Modules": "aws-cdk=1.42.0,@aws-cdk/assets=1.42.0,@aws-cdk/aws-apigateway=1.42.0,@aws-cdk/aws-applicationautoscaling=1.42.0,@aws-cdk/aws-autoscaling-common=1.42.0,@aws-cdk/aws-cloudwatch=1.42.0,@aws-cdk/aws-dynamodb=1.42.0,@aws-cdk/aws-ec2=1.42.0,@aws-cdk/aws-events=1.42.0,@aws-cdk/aws-iam=1.42.0,@aws-cdk/aws-kms=1.42.0,@aws-cdk/aws-lambda=1.42.0,@aws-cdk/aws-lambda-event-sources=1.42.0,@aws-cdk/aws-logs=1.42.0,@aws-cdk/aws-s3=1.42.0,@aws-cdk/aws-s3-assets=1.42.0,@aws-cdk/aws-s3-notifications=1.42.0,@aws-cdk/aws-sns=1.42.0,@aws-cdk/aws-sns-subscriptions=1.42.0,@aws-cdk/aws-sqs=1.42.0,@aws-cdk/aws-ssm=1.42.0,@aws-cdk/cdk-assets-schema=1.42.0,@aws-cdk/cloud-assembly-schema=1.42.0,@aws-cdk/core=1.42.0,@aws-cdk/custom-resources=1.42.0,@aws-cdk/cx-api=1.42.0,@aws-cdk/region-info=1.42.0,jsii-runtime=node.js/v10.16.3"
+      },
+      "Condition": "CDKMetadataAvailable"
+    }
+  },
+  "Parameters": {
+    "AssetParameters1bc2a4ba6a234373c741b322137374177a44676f4cc3b2e99bc38ec01b641b87S3Bucket733A42FA": {
+      "Type": "String",
+      "Description": "S3 bucket for asset \"1bc2a4ba6a234373c741b322137374177a44676f4cc3b2e99bc38ec01b641b87\""
+    },
+    "AssetParameters1bc2a4ba6a234373c741b322137374177a44676f4cc3b2e99bc38ec01b641b87S3VersionKey861FB676": {
+      "Type": "String",
+      "Description": "S3 key for asset version \"1bc2a4ba6a234373c741b322137374177a44676f4cc3b2e99bc38ec01b641b87\""
+    },
+    "AssetParameters1bc2a4ba6a234373c741b322137374177a44676f4cc3b2e99bc38ec01b641b87ArtifactHash36561398": {
+      "Type": "String",
+      "Description": "Artifact hash for asset \"1bc2a4ba6a234373c741b322137374177a44676f4cc3b2e99bc38ec01b641b87\""
+    },
+    "AssetParametersc72dcc3f4317a21fe33bda4fbe7e45a03ab29413dc7ddfde4aab790e9c94a524S3Bucket73159D8D": {
+      "Type": "String",
+      "Description": "S3 bucket for asset \"c72dcc3f4317a21fe33bda4fbe7e45a03ab29413dc7ddfde4aab790e9c94a524\""
+    },
+    "AssetParametersc72dcc3f4317a21fe33bda4fbe7e45a03ab29413dc7ddfde4aab790e9c94a524S3VersionKey5DF6FEA2": {
+      "Type": "String",
+      "Description": "S3 key for asset version \"c72dcc3f4317a21fe33bda4fbe7e45a03ab29413dc7ddfde4aab790e9c94a524\""
+    },
+    "AssetParametersc72dcc3f4317a21fe33bda4fbe7e45a03ab29413dc7ddfde4aab790e9c94a524ArtifactHash8C482D5F": {
+      "Type": "String",
+      "Description": "Artifact hash for asset \"c72dcc3f4317a21fe33bda4fbe7e45a03ab29413dc7ddfde4aab790e9c94a524\""
+    },
+    "AssetParametersf99ca992e8e95ac6baa52ff1d66376dd165d141c26cb0095fe608d3bf05af03eS3BucketFA6AB652": {
+      "Type": "String",
+      "Description": "S3 bucket for asset \"f99ca992e8e95ac6baa52ff1d66376dd165d141c26cb0095fe608d3bf05af03e\""
+    },
+    "AssetParametersf99ca992e8e95ac6baa52ff1d66376dd165d141c26cb0095fe608d3bf05af03eS3VersionKeyE0147B15": {
+      "Type": "String",
+      "Description": "S3 key for asset version \"f99ca992e8e95ac6baa52ff1d66376dd165d141c26cb0095fe608d3bf05af03e\""
+    },
+    "AssetParametersf99ca992e8e95ac6baa52ff1d66376dd165d141c26cb0095fe608d3bf05af03eArtifactHash9177841A": {
+      "Type": "String",
+      "Description": "Artifact hash for asset \"f99ca992e8e95ac6baa52ff1d66376dd165d141c26cb0095fe608d3bf05af03e\""
+    },
+    "AssetParameterscaf62b443167a07d28768bc3dfbd005d635bfaf68ef778797b5296d08956c404S3Bucket5F4A8BD5": {
+      "Type": "String",
+      "Description": "S3 bucket for asset \"caf62b443167a07d28768bc3dfbd005d635bfaf68ef778797b5296d08956c404\""
+    },
+    "AssetParameterscaf62b443167a07d28768bc3dfbd005d635bfaf68ef778797b5296d08956c404S3VersionKey326AE732": {
+      "Type": "String",
+      "Description": "S3 key for asset version \"caf62b443167a07d28768bc3dfbd005d635bfaf68ef778797b5296d08956c404\""
+    },
+    "AssetParameterscaf62b443167a07d28768bc3dfbd005d635bfaf68ef778797b5296d08956c404ArtifactHashB91485C2": {
+      "Type": "String",
+      "Description": "Artifact hash for asset \"caf62b443167a07d28768bc3dfbd005d635bfaf68ef778797b5296d08956c404\""
+    }
+  },
+  "Conditions": {
+    "CDKMetadataAvailable": {
+      "Fn::Or": [
+        {
+          "Fn::Or": [
+            {
+              "Fn::Equals": [
+                {
+                  "Ref": "AWS::Region"
+                },
+                "ap-east-1"
+              ]
+            },
+            {
+              "Fn::Equals": [
+                {
+                  "Ref": "AWS::Region"
+                },
+                "ap-northeast-1"
+              ]
+            },
+            {
+              "Fn::Equals": [
+                {
+                  "Ref": "AWS::Region"
+                },
+                "ap-northeast-2"
+              ]
+            },
+            {
+              "Fn::Equals": [
+                {
+                  "Ref": "AWS::Region"
+                },
+                "ap-south-1"
+              ]
+            },
+            {
+              "Fn::Equals": [
+                {
+                  "Ref": "AWS::Region"
+                },
+                "ap-southeast-1"
+              ]
+            },
+            {
+              "Fn::Equals": [
+                {
+                  "Ref": "AWS::Region"
+                },
+                "ap-southeast-2"
+              ]
+            },
+            {
+              "Fn::Equals": [
+                {
+                  "Ref": "AWS::Region"
+                },
+                "ca-central-1"
+              ]
+            },
+            {
+              "Fn::Equals": [
+                {
+                  "Ref": "AWS::Region"
+                },
+                "cn-north-1"
+              ]
+            },
+            {
+              "Fn::Equals": [
+                {
+                  "Ref": "AWS::Region"
+                },
+                "cn-northwest-1"
+              ]
+            },
+            {
+              "Fn::Equals": [
+                {
+                  "Ref": "AWS::Region"
+                },
+                "eu-central-1"
+              ]
+            }
+          ]
+        },
+        {
+          "Fn::Or": [
+            {
+              "Fn::Equals": [
+                {
+                  "Ref": "AWS::Region"
+                },
+                "eu-north-1"
+              ]
+            },
+            {
+              "Fn::Equals": [
+                {
+                  "Ref": "AWS::Region"
+                },
+                "eu-west-1"
+              ]
+            },
+            {
+              "Fn::Equals": [
+                {
+                  "Ref": "AWS::Region"
+                },
+                "eu-west-2"
+              ]
+            },
+            {
+              "Fn::Equals": [
+                {
+                  "Ref": "AWS::Region"
+                },
+                "eu-west-3"
+              ]
+            },
+            {
+              "Fn::Equals": [
+                {
+                  "Ref": "AWS::Region"
+                },
+                "me-south-1"
+              ]
+            },
+            {
+              "Fn::Equals": [
+                {
+                  "Ref": "AWS::Region"
+                },
+                "sa-east-1"
+              ]
+            },
+            {
+              "Fn::Equals": [
+                {
+                  "Ref": "AWS::Region"
+                },
+                "us-east-1"
+              ]
+            },
+            {
+              "Fn::Equals": [
+                {
+                  "Ref": "AWS::Region"
+                },
+                "us-east-2"
+              ]
+            },
+            {
+              "Fn::Equals": [
+                {
+                  "Ref": "AWS::Region"
+                },
+                "us-west-1"
+              ]
+            },
+            {
+              "Fn::Equals": [
+                {
+                  "Ref": "AWS::Region"
+                },
+                "us-west-2"
+              ]
+            }
+          ]
+        }
+      ]
+    }
+  }
+}
